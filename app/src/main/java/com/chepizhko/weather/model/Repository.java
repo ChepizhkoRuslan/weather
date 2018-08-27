@@ -18,7 +18,6 @@ public class Repository {
     private static String TAG = "myLogs";
     private static String KEY = "7b6099f185f3650cfd03a8c368053d4e";
 
-
     /*
      * Метод делает запрос, получает response, создаёт список объектов и отправляет в базу;
      * */
