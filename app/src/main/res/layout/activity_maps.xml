@@ -19,7 +19,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:onClick="clickOk"
-        android:text="OK"/>
+        android:text="OK"
+        android:id="@+id/id_btn__ok"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:onClick="clickCancel"
-        android:text="Cancel"/>
+        android:text="Cancel"
+        android:id="@+id/id_btn_cancel"/>
 
 </RelativeLayout>

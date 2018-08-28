@@ -9,6 +9,6 @@ public interface APIService {
 
 
     @GET("data/2.5/weather?")
-    Call<ResponseBody> getWeather(@Query("lat") int lat, @Query("lon") int lon, @Query("APPID")String appid);
+    Call<ResponseBody> getWeather(@Query("lat") double lat, @Query("lon") double lon, @Query("APPID")String appid,@Query("mode")String xml);
 
 }
