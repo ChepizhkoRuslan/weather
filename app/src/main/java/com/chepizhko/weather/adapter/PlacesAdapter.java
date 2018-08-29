@@ -74,7 +74,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.CatViewHol
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(mContext, "Выбрано " + txtPlace.getPlace(), Toast.LENGTH_SHORT).show();
-                    Intent intent = WeatherActivity.newIntent(mContext, items);
+                    Intent intent = WeatherActivity.newIntent(mContext, items,txtPlace.getPlace());
                     mContext.startActivity(intent);
                 }
             });

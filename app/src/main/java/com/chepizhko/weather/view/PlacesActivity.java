@@ -20,21 +20,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlacesActivity extends AppCompatActivity {
-    private List<Place>lstmPlace = new ArrayList<>();
-    private List<Place>lstmOnePlace = new ArrayList<>();
+    private List<Place> lstmPlace = new ArrayList<>();
+    private List<Place> lstmOnePlace = new ArrayList<>();
     private PlacesAdapter mAdapter;
+    private Intent serviceIntent;
+    private boolean flagEvent = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_places);
-        RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.places_recycler_view);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.places_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new PlacesAdapter(this,lstmOnePlace, "listPlace");
+        mAdapter = new PlacesAdapter(this, lstmOnePlace, "listPlace");
         mRecyclerView.setAdapter(mAdapter);
 
-        Intent serviceIntent = new Intent(this, MyService.class);
-        startService(serviceIntent);
+        serviceIntent = new Intent(this, MyService.class);
+
 
     }
 
@@ -43,6 +46,13 @@ public class PlacesActivity extends AppCompatActivity {
         mAdapter.setData(lstmPlace);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        startService(serviceIntent);
+
+    }
 
     public void clickToMaps(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
@@ -50,20 +60,27 @@ public class PlacesActivity extends AppCompatActivity {
         this.finish();
 
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void messageEventFromService(List<Place>lstOnePlace){
-        setItem(lstOnePlace);
+    public void messageEventFromService(List<Place> lstOnePlace) {
+
+            setItem(lstOnePlace);
+
+
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
     }
+
     @Override
     protected void onStop() {
         EventBus.getDefault().unregister(this);
         super.onStop();
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
