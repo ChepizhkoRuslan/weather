@@ -5,7 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.WeatherActivity">
+    tools:context=".view.WeatherActivity"
+    android:id="@+id/rel_weather_act">
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/weather_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        tools:context="com.chepizhko.dogandcat.TabsActivity">
+    </android.support.v7.widget.RecyclerView>
+
 
     <Button
         android:id="@+id/button2"

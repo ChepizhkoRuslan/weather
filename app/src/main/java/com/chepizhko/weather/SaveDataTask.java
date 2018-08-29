@@ -5,17 +5,17 @@ import android.os.AsyncTask;
 import com.chepizhko.weather.data.AppDatabase;
 import com.chepizhko.weather.data.Places;
 import com.chepizhko.weather.data.PlacesDao;
-import com.chepizhko.weather.model.Place;
 
 /*
  * Класс загружает в базу данные.
  * */
 public class SaveDataTask extends AsyncTask<Void, Void, Void> {
-    private Place mPlace;
 
-    public SaveDataTask(Place places) {
-        mPlace = places;
-    }
+    private String mPlace;
+
+public SaveDataTask(String places) {
+    mPlace = places;
+}
 
     // метод doInBackground(…) для для заполнения базы
     @Override
@@ -27,7 +27,7 @@ public class SaveDataTask extends AsyncTask<Void, Void, Void> {
 
         Places places = new Places();
 
-        places.weather = mPlace.getPlace();
+        places.weather = mPlace;
 
         placesDao.insert(places);
 

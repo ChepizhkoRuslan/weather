@@ -2,6 +2,7 @@ package com.chepizhko.weather.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -23,8 +24,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private double lat = 50.0, lon = 36.0;
     private MapsPresenter mMapsPresenter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,22 +59,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
             }
         });
-
     }
 
     @Override
     public void clickOk(View view) {
         mMapsPresenter.onClickToRequest(lat,lon);
-
         Log.d(TAG, "RESPONSE MAPS ============ " + lat+ "      "+lon);
         Intent intent = new Intent(this,PlacesActivity.class);
+        SystemClock.sleep(500);
         startActivity(intent);
-
+        this.finish();
     }
 
     @Override
     public void clickCancel(View view) {
-        onBackPressed();
+        Intent intent = new Intent(this,PlacesActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
     @Override
